@@ -8,15 +8,16 @@ def home(request):
     context = {}
     text = request.GET.get('text')
     colour = request.GET.get('colour')
+    image_choice = request.GET.get('image_choice')
 
-    if text is not None and colour is not None:
-        path = generate_barcode(text, colour)
+    if text is not None and colour is not None and image_choice is not None:
+        path = generate_barcode(text, colour, image_choice)
         context['text'] = text
         context['path'] = path
     return render(request, "barcode_app/index.html", context)
 
 
-def generate_barcode(text, colour):
+def generate_barcode(text, colour, image_choice):
     # taking image which user wants
     # in the QR code center
     Logo_link = 'user.jpg'
@@ -53,7 +54,9 @@ def generate_barcode(text, colour):
     # set size of QR code
     pos = ((QRimg.size[0] - logo.size[0]) // 2,
            (QRimg.size[1] - logo.size[1]) // 2)
-    QRimg.paste(logo, pos)
+
+    if image_choice == 'Yes':
+        QRimg.paste(logo, pos)
 
     # save the QR code generated
     file_path = "media/barcode.png"
