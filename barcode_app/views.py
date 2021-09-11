@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import qrcode
 from PIL import Image
-from django.conf import settings
 # Create your views here.
 
 
@@ -55,7 +54,7 @@ def generate_barcode(text):
     QRimg.paste(logo, pos)
 
     # save the QR code generated
-    file_path = settings.MEDIA_ROOT + "/barcode.png"
+    file_path = "media/barcode.png"
     QRimg.save(file_path)
     return file_path
 
