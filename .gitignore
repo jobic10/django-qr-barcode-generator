@@ -134,6 +134,5 @@ dmypy.json
 .vscode
 .idea
 *.pyc
-media/
 # static/
 *.pyc
