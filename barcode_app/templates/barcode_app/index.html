@@ -16,6 +16,20 @@
             </tr>
             <tr><td colspan="2"><input type="submit" value="Proceed"></td></tr>
         </table>
+        {% if path and text %}
+          <hr>
+          <h3>Result of Generated Barcode</h3>
+          <table border ='1'>
+              <tr>
+                  <th>Data</th>
+                  <td>{{ text }}</td>
+              </tr>
+                <tr>
+                  <th>Image Path</th>
+                  <td>{{ path }}</td>
+              </tr>
+          </table>
+        {% endif %}
     </form>
 </body>
 </html>

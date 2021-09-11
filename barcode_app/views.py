@@ -9,7 +9,9 @@ def home(request):
     context = {}
     text = request.GET.get('text')
     if text is not None:
-        generate_barcode(text)
+        path = generate_barcode(text)
+        context['text'] = text
+        context['path'] = path
     return render(request, "barcode_app/index.html", context)
 
 
@@ -53,9 +55,9 @@ def generate_barcode(text):
     QRimg.paste(logo, pos)
 
     # save the QR code generated
-    QRimg.save('gfg_QR.png')
-
-    print('QR code generated!')
+    file_path = settings.MEDIA_ROOT + "/barcode.png"
+    QRimg.save(file_path)
+    return file_path
 
     """
 
