@@ -136,3 +136,5 @@ dmypy.json
 *.pyc
 media/
 # static/
+__module__
+*.pyc
