@@ -24,7 +24,7 @@ def generate_barcode(text, colour, image_choice):
     # taking url or text
     url = text
 
-    # addingg URL or text to QRcode
+    # adding URL or text to QRcode
     QRcode.add_data(url)
 
     # generating QR code
