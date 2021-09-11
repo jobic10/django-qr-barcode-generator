@@ -7,14 +7,16 @@ from PIL import Image
 def home(request):
     context = {}
     text = request.GET.get('text')
-    if text is not None:
-        path = generate_barcode(text)
+    colour = request.GET.get('colour')
+
+    if text is not None and colour is not None:
+        path = generate_barcode(text, colour)
         context['text'] = text
         context['path'] = path
     return render(request, "barcode_app/index.html", context)
 
 
-def generate_barcode(text):
+def generate_barcode(text, colour):
     # taking image which user wants
     # in the QR code center
     Logo_link = 'user.jpg'
@@ -42,7 +44,7 @@ def generate_barcode(text):
     QRcode.make()
 
     # taking color name from user
-    QRcolor = 'Green'
+    QRcolor = colour
 
     # adding color to QR code
     QRimg = QRcode.make_image(
@@ -59,7 +61,6 @@ def generate_barcode(text):
     return file_path
 
     """
-
         When you run the program then it will take the input image and the base width. After that, the image will be reshaped and a QRcode object will be created. 
         Using the QRcode object various attributes will be assigned such as data or URL will be linked to the QR code using add_data() method, color of the QR code will be assigned using the make_image() method and the reshaped image will be placed in the QR code using the paste() method. 
         Finally, the generated QR code will be saved in a given location using the save() method.
